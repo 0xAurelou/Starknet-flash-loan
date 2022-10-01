@@ -14,7 +14,7 @@ from openzeppelin.token.erc20.IERC20 import IERC20
 from openzeppelin.security.safemath.library import SafeUint256
 
 const SUCCESS = 1;
-const FAILURE = -1;
+const FAILURE = 0;
 
 @storage_var
 func lender() -> (res: felt) {
@@ -26,6 +26,7 @@ func constructor{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr
     return();
 }
 
+@external
 func onFlashLoan {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}( initiator_address : felt, token_address: felt, amount : Uint256, fee : Uint256, loan_type : felt) -> (return_code : felt){
     let (caller_address :felt) = get_caller_address();
     with_attr error_message("FlashBorrower : untrust initiator") {
@@ -39,6 +40,7 @@ func onFlashLoan {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_pt
     return(return_code=SUCCESS);
 }
 
+@external
 func FlashBorrow {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr} (token_address : felt, amount : Uint256){
     alloc_locals;
     let (caller_address : felt)  = get_caller_address();
