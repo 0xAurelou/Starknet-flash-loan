@@ -43,6 +43,7 @@ func onFlashLoan {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_pt
 @external
 func FlashBorrow {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr} (token_address : felt, amount : Uint256){
     alloc_locals;
+    let (contract_address : felt) = get_contract_address();
     let (caller_address : felt)  = get_caller_address();
     let (lender_contract : felt) = lender.read();
     let (allowance_ : Uint256) = IERC20.allowance(lender_contract, lender_contract,caller_address);
@@ -51,6 +52,6 @@ func FlashBorrow {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_pt
     let (repayement_amount : Uint256) = SafeUint256.add(amount, fee_); 
     let (total_amount : Uint256) = SafeUint256.add(amount, fee_);
     IERC20.approve(lender_contract, caller_address, total_amount);
-    // IERC5136FlashLender.flashloan(contract_address, token_address, amount)
+    IERC3156FlashLender.flashLoan(contract_address,caller_address, token_address, amount);
     return();
 }

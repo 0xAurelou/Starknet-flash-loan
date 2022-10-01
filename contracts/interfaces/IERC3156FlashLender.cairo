@@ -33,7 +33,6 @@ namespace IERC3156FlashLender{
         receiver: felt,
         token_address: felt,
         amount: Uint256,
-        data: felt,
     ) -> (success : felt){
     }
 }

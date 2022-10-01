@@ -29,6 +29,12 @@ func constructor {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_pt
 }
 
 @view
+func maxFlashLoan {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(token_address : felt) -> (amount : Uint256){
+    let max_amount : Uint256 = Uint256(1000000,0);
+    return(max_amount,); 
+}
+
+@view
 func getFlashLoanFees {syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(token_address : felt, amount : Uint256) -> (fee : Uint256) {
     let (token_support : felt) = supported_token.read(token_address);
     with_attr error_message("Token is not supported"){
