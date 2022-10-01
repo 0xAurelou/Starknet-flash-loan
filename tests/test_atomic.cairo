@@ -9,7 +9,7 @@ from starkware.cairo.common.math_cmp import is_le
 func balance() -> (res: felt) {
 }
 
-// Consider valid since all Tx failed before signing
+// Consider valid since all Tx failed before signg
 @external
 func increase_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     amount: felt

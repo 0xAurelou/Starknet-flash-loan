@@ -9,7 +9,6 @@ namespace IERC3156FlashLender{
     // * @param address of token you want to borrow .
     // * @return The maximum amount of `token` that can be borrowed.
 
-    @view
     func maxFlashLoan(
         token_address: felt,
     ) -> (max_amount : Uint256){

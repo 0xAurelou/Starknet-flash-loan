@@ -12,7 +12,7 @@ namespace IERC3156FlashBorrower {
     //  * @param fee The additional amount of tokens to repay.
     //  * @param data Arbitrary data structure, intended to contain user-defined parameters.
     //  * @return The keccak256 hash of "ERC3156FlashBorrower.onFlashLoan"
-    func onFlashLoan( initiator_address : felt, token_address : felt , amount : Uint256 , fee : Uint256 , data : felt ) -> felt {
+    func onFlashLoan( initiator_address : felt, token_address : felt , amount : Uint256 , fee : Uint256 , data : felt ) -> (res : felt) {
     }
   
 }
